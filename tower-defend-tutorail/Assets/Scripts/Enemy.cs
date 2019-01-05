@@ -35,6 +35,7 @@ public class Enemy : MonoBehaviour
             float dis = Vector3.Distance(transform.position, targetPos);
             if (dis < 0.1f)
             {
+                
                 targetPos = Vector3.zero;
             }
         }

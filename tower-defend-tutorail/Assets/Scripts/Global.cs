@@ -2,7 +2,7 @@
 using UnityEngine;
 enum EventEnum
 {
-    ShowBuildMenu
+    ShowBuildMenu,ShowUpdateMenu,CloseMenu, BuildTower1,BuildTower2
 }
 class TowerUnityEvent: UnityEvent<EventEnum ,GameObject>
 {
