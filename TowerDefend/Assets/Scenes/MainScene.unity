@@ -204,7 +204,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!108 &170076734
 Light:
   m_ObjectHideFlags: 0
@@ -662,7 +662,7 @@ MonoBehaviour:
   pathObject: {fileID: 2080763378}
   enemyPrefab: {fileID: 6867363693205692319, guid: b242622c8888b3945b4b3dc3ceeb9065,
     type: 3}
-  addEnemeyDutaction: 0.5
+  addEnemeyDutaction: 1
 --- !u!114 &505074611
 MonoBehaviour:
   m_ObjectHideFlags: 0

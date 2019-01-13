@@ -8,7 +8,7 @@ public class ObjectPool
     {
         
     }
-    public GameObject getObject()
+    public GameObject GetObject()
     {
         if (objectList.Count == 0)
         {
@@ -21,7 +21,7 @@ public class ObjectPool
             return obj;
         }
     }
-    public void pushObject(GameObject obj)
+    public void PushObject(GameObject obj)
     {
         obj.SetActive(false);
         objectList.Add(obj);

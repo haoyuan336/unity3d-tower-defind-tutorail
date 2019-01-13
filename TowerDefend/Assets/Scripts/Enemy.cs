@@ -9,6 +9,7 @@ public class Enemy : MonoBehaviour
     private int pathIndex = 0;
     private Vector3 targetPos = Vector3.zero;
     private ObjectPool enemyPool = null;
+    private GameObject enemyController = null;
     void Start()
     {
         
@@ -25,7 +26,7 @@ public class Enemy : MonoBehaviour
         }
         if (!targetPos.Equals(Vector3.zero))
         {
-            transform.position = Vector3.MoveTowards(transform.position, targetPos, 0.1f);
+            transform.position = Vector3.MoveTowards(transform.position, targetPos, 0.02f);
 
         }
         float distance = Vector3.Distance(transform.position, targetPos);
@@ -36,12 +37,14 @@ public class Enemy : MonoBehaviour
             if (pathIndex == pathList.Count)
             {
                 //Destroy(gameObject);
-                enemyPool.pushObject(gameObject);
+                this.enemyController.transform.GetComponent<EnemyController>().EnemyEnd(gameObject);
+                enemyPool.PushObject(gameObject);
             }
         }
     }
-    public void InitWithData(GameObject path)
+    public void InitWithData(GameObject path, GameObject ctl)
     {
+        this.enemyController = ctl;
         for (int i = 0; i < path.transform.childCount; i ++)
         {
             pathList.Add(path.transform.GetChild(i).transform.position);
