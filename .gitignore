@@ -28,3 +28,4 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
+TowerDefend/.vs/TowerDefend/v15/Server/sqlite3/db.lock

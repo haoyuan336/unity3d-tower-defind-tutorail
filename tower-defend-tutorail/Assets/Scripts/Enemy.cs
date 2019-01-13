@@ -8,20 +8,31 @@ public class Enemy : MonoBehaviour
     private List<Vector3> pathList = new List<Vector3>();
     private int pathIndex = 0;
     private Vector3 targetPos = Vector3.zero;
+    public int index;
+    private ObjectPool enemyPool;
+    private bool isRuning = false;
     void Start()
     {
     }
-
+    public void SetEnemyPool(ObjectPool objPool)
+    {
+        enemyPool = objPool;
+    }
     // Update is called once per frame
     void Update()
     {
-        if (pathList != null && targetPos.Equals(Vector3.zero))
+        if (!isRuning)
+        {
+            return;
+        }
+        if (pathList.Count != 0 && targetPos.Equals(Vector3.zero))
         {
             if (pathIndex == pathList.Count)
             {
-                Debug.Log("移动结束");
-                Destroy(gameObject);
-                pathList = null;
+                Global.GetInstance().RemoveEnemy(index);
+                enemyPool.RecoverObject(gameObject);
+                pathList.RemoveRange(0, pathList.Count);
+                Global.GetInstance().GetEvent().Invoke(EventEnum.RecoverEnemy, gameObject);
             }
             else
             {
@@ -46,5 +57,15 @@ public class Enemy : MonoBehaviour
         {
             pathList.Add(pathObject.transform.GetChild(i).transform.position);
         }
+        pathIndex = 0;
+        targetPos = Vector3.zero;
+        isRuning = true;
+        Global.GetInstance().PushEnemy(gameObject);
+
     }
+    public void SetEnemyIndex(int value)
+    {
+        index = value;
+    }
+    
 }

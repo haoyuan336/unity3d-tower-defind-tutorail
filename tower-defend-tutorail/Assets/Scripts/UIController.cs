@@ -21,6 +21,8 @@ public class UIController : MonoBehaviour
                 updateTowerMenu.SetActive(false);
                 buildTowerMenu.SetActive(true);
                 buildTowerMenu.transform.position = Camera.main.WorldToScreenPoint(obj.transform.position);
+                currentObj = obj;
+
                 break;
             case EventEnum.CloseMenu:
                
@@ -29,11 +31,12 @@ public class UIController : MonoBehaviour
                 buildTowerMenu.SetActive(false);
                 updateTowerMenu.SetActive(true);
                 updateTowerMenu.transform.position = Camera.main.WorldToScreenPoint(obj.transform.position);
+                currentObj = obj;
+
                 break;
             default:
                 break;
         }
-        currentObj = obj;
 
     }
     // Update is called once per frame
@@ -56,6 +59,7 @@ public class UIController : MonoBehaviour
                 buildTowerMenu.SetActive(false);
                 updateTowerMenu.SetActive(false);
                 currentObj = null;
+                Global.GetInstance().GetEvent().Invoke(EventEnum.CloseMenu, gameObject);
                 break;
             case "update-tower":
                 currentObj.transform.GetComponent<Tower>().UpdateTower();
